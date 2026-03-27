@@ -1,0 +1,35 @@
+aid: axonius
+name: Axonius
+description: >-
+  Axonius is a cybersecurity asset management platform providing SaaS management, device discovery, and security policy enforcement across IT environments.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - SaaS Security
+  - Asset Management
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/axonius/refs/heads/main/apis.yml
+created: '2026-03-27'
+modified: '2026-03-27'
+specificationVersion: '0.19'
+apis:
+  - aid: axonius:axonius
+    name: Axonius
+    description: >-
+      Axonius is a cybersecurity asset management platform providing SaaS management, device discovery, and security policy enforcement across IT environments.
+    humanURL: https://www.axonius.com
+    tags:
+      - SaaS Security
+    properties:
+      - type: Documentation
+        url: https://docs.axonius.com/
+common:
+  - type: Website
+    url: https://www.axonius.com
+  - type: Documentation
+    url: https://docs.axonius.com/
+  - type: GitHub Organization
+    url: https://github.com/Axonius
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
