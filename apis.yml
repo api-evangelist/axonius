@@ -4,7 +4,7 @@ description: >-
   Axonius is a cybersecurity asset management platform providing SaaS management,
   device discovery, and security policy enforcement across IT environments.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Asset Management
   - Cybersecurity
