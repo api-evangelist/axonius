@@ -102,7 +102,7 @@ common:
       description: Correlate Qualys vulnerability scan data with asset context.
     - name: Okta
       description: Correlate SaaS user access data with identity from Okta.
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.axonius.com/llms.txt
 maintainers:
   - FN: Kin Lane
