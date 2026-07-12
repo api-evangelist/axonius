@@ -28,6 +28,10 @@ apis:
     - type: Documentation
       url: https://docs.axonius.com/
 common:
+  - type: TrustCenter
+    url: security/axonius-trust-center.yml
+  - type: DomainSecurity
+    url: security/axonius-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/axonius
   - type: Website
