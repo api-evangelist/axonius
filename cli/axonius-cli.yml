@@ -1,0 +1,67 @@
+generated: '2026-09-18'
+method: searched
+source: https://axonius-api-client.readthedocs.io/en/latest/main/usage_cli/quickstart.html
+docs: https://axonius-api-client.readthedocs.io/
+repo: https://github.com/Axonius/axonius_api_client
+name: axonshell
+status: deprecated
+description: >-
+  axonshell is the first-party command line interface that ships inside the axonius_api_client
+  Python package (packages/axonius-packages.yml) and exposes most of the library over the v1 REST
+  API. The provider has deprecated the package in favor of API v2 (bug fixes only), so this is a
+  maintained-but-frozen surface; no CLI for API v2 has been published. Command groups captured
+  from the readthedocs table of contents for 5.0.22.
+install:
+  pip: pip install axonius_api_client
+  binary: axonshell (added to the Python scripts directory on install)
+connection:
+  env:
+    - AX_URL   # URL of the Axonius instance
+    - AX_KEY   # service-account API key
+    - AX_SECRET
+  dotenv: supported (.env in the working directory)
+  prompts: supported
+commands:
+  adapters:
+    - {name: adapters get, description: List adapters and their connections.}
+    - {name: adapters cnx add, description: Add an adapter connection.}
+    - {name: adapters cnx add-from-json, description: Add adapter connections from a JSON definition.}
+    - {name: adapters cnx get, description: Get adapter connections.}
+    - {name: adapters cnx get-by-id, description: Get one adapter connection by id.}
+    - {name: adapters cnx test, description: Test an adapter connection.}
+    - {name: adapters cnx test-by-id, description: Test an adapter connection by id.}
+    - {name: adapters cnx delete-by-id, description: Delete an adapter connection by id.}
+  assets_devices_users:
+    - {name: devices/users count, description: Count assets matching a query.}
+    - {name: devices/users count-by-saved-query, description: Count assets matching a saved query.}
+    - {name: devices/users get, description: Get assets matching an AQL query with selected fields; exports csv/json.}
+    - {name: devices/users get-by-id, description: Get a single asset by internal id.}
+    - {name: devices/users get-by-saved-query, description: Get assets matching a saved query.}
+    - {name: devices/users get-fields, description: List available fields per adapter.}
+    - {name: devices/users get-fields-default, description: List default fields.}
+    - {name: devices/users get-tags, description: List tags.}
+    - {name: devices/users saved-query add, description: Create a saved query.}
+    - {name: devices/users saved-query get, description: List saved queries.}
+    - {name: devices/users saved-query get-by-name, description: Get a saved query by name.}
+    - {name: devices/users saved-query delete-by-name, description: Delete a saved query by name.}
+    - {name: devices/users saved-query delete-by-tags, description: Delete saved queries by tag.}
+  devices:
+    - {name: devices get-by-hostname, description: Find devices by hostname (regex, NOT, multi-value supported).}
+    - {name: devices get-by-ip, description: Find devices by IP address.}
+    - {name: devices get-by-mac, description: Find devices by MAC address.}
+    - {name: devices get-by-subnet, description: Find devices in a subnet.}
+  users:
+    - {name: users get-by-mail, description: Find users by email.}
+    - {name: users get-by-username, description: Find users by username.}
+  tools:
+    - {name: tools shell, description: Open an interactive Python shell with a connected client.}
+    - {name: tools write-config, description: Write a .env connection config.}
+features:
+  - Command group aliases (prefix matching)
+  - Bash and Zsh autocompletion
+  - Export options (csv, json, table) and piped/file row input
+key_flows:
+  - name: Get assets seen in the last 3 days with selected fields
+    command: >-
+      axonshell devices get --query '(specific_data.data.last_seen >= date("NOW - 3d"))'
+      --field aws:aws_device_type --field os.type

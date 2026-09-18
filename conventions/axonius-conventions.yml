@@ -1,0 +1,70 @@
+generated: '2026-09-18'
+method: searched
+source: >-
+  https://docs.axonius.com/docs/axonius-rest-api, https://docs.axonius.com/docs/manage-service-accounts,
+  https://docs.axonius.com/docs/managing-api-settings, https://github.com/Axonius/postman-minis
+description: >-
+  Cross-cutting conventions of the Axonius REST API as far as the PUBLIC surface states them. The
+  API v2 reference (developer.axonius.com) is login-gated, so most runtime semantics — error
+  envelope, rate-limit headers, idempotency, request ids — are simply not published, and this
+  file says so rather than inferring them. What is public: service-account authentication with
+  two schemes, a per-instance base URL, page[offset]/page[limit] pagination on the v1 audit
+  endpoint, and a destructive-endpoint gate (/users/destroy, /devices/destroy) that is off by
+  default.
+base_url: https://{axonius-instance}/api
+api_style: REST over HTTPS, JSON (v1 paths under /api; v2 reference login-gated)
+authentication:
+  scheme: api-key + api-secret headers (default) or OAuth 2.1 client_credentials bearer token (1 h)
+  requires: dedicated service account with an API-enabled role (v6.1.74+)
+  detail: authentication/axonius-authentication.yml
+idempotency:
+  supported: false
+  coverage: none
+  mechanism: null
+  note: >-
+    No Idempotency-Key or equivalent replay protection is documented anywhere public. Writes seen
+    in the Postman minis (POST /api/devices/{id}/notes, POST /api/dashboard/import, PUT
+    /api/devices/entity_custom) carry no idempotency header.
+reversibility:
+  grade: none
+  note: >-
+    No reversal operation (undo, restore, rollback) or window is documented for any public write.
+    The most consequential writes — /users/destroy and /devices/destroy, which delete ALL assets —
+    are gated behind the "Enable API destroy endpoints" advanced setting (off by default) and have
+    no documented undo; treat them as irreversible. Dashboard/chart/query import-export gives a
+    manual round-trip (export before import) but no API-level restore.
+  surfaces:
+  - write: POST /api/devices/{id}/notes
+    reversal: none documented
+  - write: PUT /api/devices/entity_custom
+    reversal: none documented
+  - write: POST /api/dashboard/import, /api/dashboard/charts/import, /api/devices/views/import
+    reversal: none documented (export endpoints allow a manual backup first)
+  - write: /users/destroy, /devices/destroy
+    reversal: none — deletes all assets; disabled unless "Enable API destroy endpoints" is on
+    docs: https://docs.axonius.com/docs/managing-api-settings
+dry_run_mode:
+  supported: null
+  note: not documented publicly
+pagination:
+  style: offset
+  params: ["page[offset]", "page[limit]"]
+  evidence: GET /api/settings/audit?page[offset]=0&page[limit]=140 (Postman minis, activity logs)
+  response_fields: not documented publicly
+querying:
+  language: Axonius Query Language (AQL) filter strings, e.g. (specific_data.data.last_seen >= date("NOW - 3d"))
+  field_selection: explicit field lists (ax_fields) using backend field names; Syntax Helper in the product
+field_expansion: not documented
+metadata: not documented
+request_id: not documented
+versioning:
+  scheme: API generations v1 / v2
+  detail: lifecycle/axonius-lifecycle.yml
+errors:
+  envelope: not published outside the gated reference ("Clear and simple error messages" is the only public statement)
+  detail: null
+rate_limits:
+  documented: false
+  headers: not documented
+  detail: rate-limits/axonius-rate-limits.yml
+changelog: changelog/axonius-changelog.yml

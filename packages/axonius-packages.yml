@@ -1,0 +1,27 @@
+generated: '2026-09-18'
+method: searched
+source: https://github.com/Axonius/axonius_api_client
+description: >-
+  First-party client libraries for the Axonius REST API. One package exists: axonius_api_client,
+  published by Axonius on PyPI from the Axonius GitHub organization, which bundles both a Python
+  library and the axonshell CLI. Currency read from the PyPI JSON endpoint on 2026-09-18. The
+  provider's own README marks the package DEPRECATED in favor of API v2 ("New features will no
+  longer be added to this API. Axonius will only provide bug fixes"); API v2 has no published
+  client library — its reference lives behind the login-gated developer.axonius.com. No npm, Maven,
+  NuGet, Go, RubyGems, Packagist or crates.io package was found.
+packages:
+  - language: python
+    registry: pypi
+    name: axonius_api_client
+    url: https://pypi.org/project/axonius-api-client/
+    source: https://github.com/Axonius/axonius_api_client
+    docs: https://axonius-api-client.readthedocs.io/
+    install: pip install axonius_api_client
+    official: true
+    license: MIT
+    version: 5.0.22
+    published: '2026-01-08'
+    status: deprecated
+    note: >-
+      Wraps the v1 REST API and ships the axonshell CLI (see cli/axonius-cli.yml). Deprecated by
+      Axonius in favor of API v2; bug fixes only. Last release 2026-01-08 per PyPI.

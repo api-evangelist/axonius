@@ -1,8 +1,11 @@
 aid: axonius
 name: Axonius
 description: >-
-  Axonius is a cybersecurity asset management platform providing SaaS management,
-  device discovery, and security policy enforcement across IT environments.
+  Axonius is a cybersecurity asset management platform (Axonius Asset Cloud) that aggregates
+  device, user, cloud, SaaS and vulnerability data from 800+ adapters into one correlated
+  inventory, enforces security policies through automated enforcement actions and workflows,
+  and exposes that inventory over a service-account REST API (API v2), an Axonius Query
+  Language, a deprecated Python client and CLI, outbound webhooks, and an early-access MCP server.
 type: Index
 deliveryModel:
   model: saas
@@ -33,10 +36,13 @@ tags:
   - Cybersecurity
   - SaaS Management
   - SaaS Security
+  - Vulnerability Management
+  - IT Asset Management
+  - Security Operations
 url: >-
   https://raw.githubusercontent.com/api-evangelist/axonius/refs/heads/main/apis.yml
 created: '2026-03-27'
-modified: '2026-04-19'
+modified: '2026-09-18'
 specificationVersion: '0.23'
 apis:
   - aid: axonius:axonius
@@ -44,12 +50,21 @@ apis:
     description: >-
       Axonius is a cybersecurity asset management platform providing SaaS management,
       device discovery, and security policy enforcement across IT environments.
-    humanURL: https://www.axonius.com
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/axonius.png
+    humanURL: https://docs.axonius.com/docs/axonius-rest-api
+    baseURL: https://{axonius-instance}/api
     tags:
     - SaaS Security
+    - Asset Management
     properties:
     - type: Documentation
-      url: https://docs.axonius.com/
+      url: https://docs.axonius.com/docs/axonius-rest-api
+    - type: APIReference
+      url: https://developer.axonius.com/
+    - type: Postman
+      url: https://github.com/Axonius/postman-minis
+    - type: Authentication
+      url: authentication/axonius-authentication.yml
 common:
   - type: TrustCenter
     url: security/axonius-trust-center.yml
@@ -66,13 +81,57 @@ common:
   - type: Blog
     url: https://www.axonius.com/blog
   - type: Pricing
-    url: https://www.axonius.com/pricing
+    url: https://aws.amazon.com/marketplace/pp/prodview-bupmprfogelg4
   - type: TermsOfService
-    url: https://www.axonius.com/terms-of-service
+    url: https://www.axonius.com/legal/terms-conditions
   - type: PrivacyPolicy
     url: https://www.axonius.com/privacy-policy
   - type: GettingStarted
-    url: https://docs.axonius.com/docs/getting-started
+    url: https://docs.axonius.com/docs/axonius-rest-api
+  - type: DeveloperPortal
+    url: https://developer.axonius.com/
+  - type: APIReference
+    url: https://developer.axonius.com/
+  - type: Support
+    url: https://support.axonius.com/
+  - type: Postman
+    url: https://github.com/Axonius/postman-minis
+  - type: Packages
+    url: packages/axonius-packages.yml
+  - type: SDKs
+    url: packages/axonius-packages.yml
+  - type: CLI
+    url: cli/axonius-cli.yml
+  - type: WellKnown
+    url: well-known/axonius-well-known.yml
+  - type: SecurityTxt
+    url: well-known/axonius-security.txt
+  - type: VulnerabilityDisclosure
+    url: security/axonius-vulnerability-disclosure.yml
+  - type: Security
+    url: security/axonius-vulnerability-disclosure.yml
+  - type: Compliance
+    url: security/axonius-trust-center.yml
+  - type: Conformance
+    url: conformance/axonius-conformance.yml
+  - type: Authentication
+    url: authentication/axonius-authentication.yml
+  - type: MCPServer
+    url: mcp/axonius-mcp.yml
+  - type: Lifecycle
+    url: lifecycle/axonius-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/axonius-changelog.yml
+  - type: Conventions
+    url: conventions/axonius-conventions.yml
+  - type: Webhooks
+    url: asyncapi/axonius-webhooks.yml
+  - type: Plans
+    url: plans/axonius-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/axonius-rate-limits.yml
+  - type: LLMsTxt
+    url: llms/axonius-llms.txt
   - type: Features
     data:
     - name: Asset Discovery
@@ -134,3 +193,8 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-18'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v3

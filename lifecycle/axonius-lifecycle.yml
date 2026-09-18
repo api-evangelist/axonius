@@ -1,0 +1,39 @@
+generated: '2026-09-18'
+method: searched
+source: >-
+  https://docs.axonius.com/docs/axonius-rest-api, https://github.com/Axonius/axonius_api_client,
+  https://docs.axonius.com/changelog, https://docs.axonius.com/docs/managing-api-settings
+description: >-
+  Lifecycle facts for the Axonius REST API that are stated publicly. The API is on its second
+  major generation ("API v2", ~40 endpoints at launch, more added over time); the provider's own
+  Python client for v1 is declared deprecated with bug fixes only. Platform releases are dated
+  and numbered (9.0.x, roughly every two weeks) with public release notes. No API deprecation
+  policy, no Sunset/Deprecation headers, no SLA page and no public status page were found —
+  status.axonius.com does not resolve — so no StatusPage or Deprecation pointer is emitted.
+versioning:
+  scheme: major API generation (v1, v2) alongside dated platform releases
+  current: API v2
+  mechanism: path-based generation; v1 paths are /api/<resource> (Postman minis), v2 reference is login-gated at developer.axonius.com
+  platform_release_cadence: approximately every two weeks (9.0.0 2026-06-15 through 9.0.7 2026-09-22)
+  docs: https://docs.axonius.com/docs/axonius-rest-api
+deprecation:
+  policy_url: null
+  sunset_header: false
+  changelog: https://docs.axonius.com/changelog
+  deprecated:
+  - item: axonius_api_client (Python library + axonshell CLI, wraps API v1)
+    status: deprecated by the provider — "New features will no longer be added to this API. Axonius will only provide bug fixes."
+    replacement: API v2
+    evidence: https://github.com/Axonius/axonius_api_client
+  - item: REST API access with a regular user account
+    status: removed in Axonius v6.1.74; service accounts only from then on
+    evidence: https://docs.axonius.com/docs/managing-api-settings
+  notes: >-
+    No written deprecation policy or notice period is published; the v1 client deprecation is a
+    README banner without a sunset date.
+status_page:
+  url: null
+  note: none found; status.axonius.com does not resolve and the site footer links no status page
+sla:
+  url: null
+  public_uptime_target: null

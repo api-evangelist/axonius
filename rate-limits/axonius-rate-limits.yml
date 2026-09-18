@@ -4,88 +4,37 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Axonius
 providerId: axonius
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-18'
+generated: '2026-09-18'
+method: searched
+source: https://docs.axonius.com/docs/axonius-rest-api
 tags:
   - Asset Management
   - Cybersecurity
-  - SaaS Management
-  - SaaS Security
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Axonius API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Axonius
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Axonius
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Axonius
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Axonius
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Axonius
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+description: >-
+  Axonius publishes no rate limits for its REST API on any public page: the REST API overview,
+  the service-account and advanced-API-settings pages and the full docs index
+  (https://docs.axonius.com/llms.txt, 2,866 pages) contain no rate-limit, throttling or 429
+  guidance, and the API v2 reference where such limits would be stated is login-gated at
+  developer.axonius.com. Recorded as an honest zero. This file replaces a 2026-05-04 scaffold
+  that carried invented per-tier limits.
+limit_count: 0
+documented: false
+headers: {}
+responseCodes: {}
+limits: []
+policies: []
+evidence:
+  - url: https://docs.axonius.com/docs/axonius-rest-api
+    status: 200
+    note: no rate-limit statement
+  - url: https://docs.axonius.com/docs/managing-api-settings
+    status: 200
+    note: no rate-limit statement
+  - url: https://developer.axonius.com/
+    status: 302
+    note: API v2 reference redirects to a ReadMe login (email magic link)
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

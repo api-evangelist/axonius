@@ -1,0 +1,46 @@
+generated: '2026-09-18'
+method: searched
+source: https://github.com/Axonius/postman-minis
+description: >-
+  Axonius publishes "Postman Minis" — small Postman v2.1 collections showing how to call its REST
+  API — in the Axonius GitHub organization. The four collections were saved verbatim from the
+  repository's main branch on 2026-09-18. Every request targets {{baseUrl}}/api/... where baseUrl
+  is "URL of the Axonius server you would like to use" (a customer instance) and authenticates
+  with api-key / api-secret headers. The repository's openapi/ directory holds only an empty
+  readme, so these collections are the only machine-readable request definitions the provider
+  publishes outside its login-gated reference.
+workspace: null
+collections:
+  - name: Devices
+    file: axonius-devices.postman_collection.json
+    origin: https://github.com/Axonius/postman-minis/blob/main/devices/Devices.postman_collection.json
+    requests:
+      - POST {{baseUrl}}/api/devices/csv
+      - POST {{baseUrl}}/api/devices/{{ax_device_id}}/notes
+      - POST {{baseUrl}}/api/devices
+    variables: [ax_device_id, ax_assest_entity_split, ax_field_to_split_by, ax_filter, ax_fields]
+  - name: activity logs
+    file: axonius-activity-logs.postman_collection.json
+    origin: https://github.com/Axonius/postman-minis/blob/main/system/activity%20logs.postman_collection.json
+    requests:
+      - GET {{baseUrl}}/api/settings/audit?page[offset]=0&page[limit]=140&date_from=...&date_to=...
+      - GET {{baseUrl}}/api/settings/audit?page[offset]=0&page[limit]=140
+  - name: custom data crud operations
+    file: axonius-custom-data.postman_collection.json
+    origin: https://github.com/Axonius/postman-minis/blob/main/custom_data/custom%20data%20crud%20operations.postman_collection.json
+    requests:
+      - PUT {{baseUrl}}/api/devices/entity_custom
+  - name: dashboards, charts, queries - import/export
+    file: axonius-dashboards-import-export.postman_collection.json
+    origin: https://github.com/Axonius/postman-minis/blob/main/importing_exporting/dashboards%2C%20charts%2C%20queries%20-%20import-export.postman_collection.json
+    requests:
+      - POST {{baseUrl}}/api/dashboard/import
+      - POST {{baseUrl}}/api/dashboard/export
+      - POST {{baseUrl}}/api/dashboard/charts/import
+      - POST {{baseUrl}}/api/dashboard/charts/export
+      - POST {{baseUrl}}/api/devices/views/export
+      - POST {{baseUrl}}/api/devices/views/import
+globals:
+  - {name: baseUrl, description: URL of the Axonius server}
+  - {name: api-key, description: API key of the Axonius user / service account}
+  - {name: api-secret, description: API secret of the Axonius user / service account}

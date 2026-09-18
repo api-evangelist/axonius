@@ -1,0 +1,47 @@
+generated: '2026-09-18'
+method: searched
+source: https://docs.axonius.com/changelog
+docs: https://docs.axonius.com/changelog
+description: >-
+  Structured capture of the Axonius Asset Cloud release notes, the dated changelog the provider
+  publishes on its ReadMe docs host (index at https://docs.axonius.com/changelog/llms.txt, each
+  entry readable as markdown by appending .md). These are PLATFORM release notes — API v2 changes
+  are folded into them rather than published as a separate API changelog. Recent window only;
+  the live changelog is the source of truth.
+versioning:
+  scheme: semantic-style platform versions (major.minor.patch)
+  current: 9.0.7
+  cadence: approximately every two weeks
+entries:
+  - version: 9.0.7
+    date: '2026-09-22'
+    url: https://docs.axonius.com/changelog/release-notes-907
+    latest: true
+    breaking: []
+    highlights:
+      - New CMDB Reconciliation workspace
+      - Windows Patch Tuesday enrichment fields (OS Windows Patch Release Type / Release Date)
+      - Exposures — Earliest First Fetch Time asset field; Remediation Ownership destination endpoint now optional
+      - External Exposures — Signature Mitigations on device security findings
+  - version: 9.0.6
+    date: '2026-09-06'
+    url: https://docs.axonius.com/changelog/release-notes-906
+  - version: 9.0.5
+    date: '2026-08-24'
+    url: https://docs.axonius.com/changelog/release-notes-905
+  - version: 9.0.4
+    date: '2026-08-09'
+    url: https://docs.axonius.com/changelog/release-notes-904
+  - version: 9.0.3
+    date: '2026-07-26'
+    url: https://docs.axonius.com/changelog/release-notes-903
+  - version: 9.0.2
+    date: '2026-07-12'
+    url: https://docs.axonius.com/changelog/release-notes-902
+  - version: 9.0.1
+    date: '2026-06-29'
+    url: https://docs.axonius.com/changelog/release-notes-901
+  - version: 9.0.0
+    date: '2026-06-15'
+    url: https://docs.axonius.com/changelog/release-notes-900
+previous: https://docs.axonius.com/docs/previous-release-notes/llms.txt

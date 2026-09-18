@@ -1,0 +1,212 @@
+generated: '2026-09-18'
+method: searched
+description: >-
+  Results of probing the /.well-known/ discovery surface on every host this record knows:
+  the registrable domain and www, the docs host (docs.axonius.com, ReadMe), the API reference
+  host (developer.axonius.com, ReadMe, login-gated), the support portal (Zendesk) and the trust
+  center. Status is the HTTP code observed at fetch time from a plain HTTP client. ONE real
+  document was found: www.axonius.com serves an RFC 9116 security.txt, PGP-signed. The
+  marketing host answers every automated request with a 429 "Vercel Security Checkpoint"
+  JavaScript challenge, so the security.txt body was retrieved through a rendering fetch and
+  then VERIFIED against the key it names (gpg: Good signature from "Axonius Security
+  <security@axonius.com>", fingerprint F88C3C1EEFFF38141272B6BE40288F6EE365AB42, key expired
+  but signature valid) — the saved copy is byte-exact or the signature would not check.
+  developer.axonius.com 302s every path to the ReadMe login (dash.readme.com/to/axonius-group),
+  including the negative-control path, so it is recorded as a login redirect, not a document
+  host. The API itself runs per customer instance ({axonius-instance}), which no anonymous
+  probe can reach.
+hosts:
+  - host: https://www.axonius.com
+    edge: Vercel Security Checkpoint — 429 + JavaScript challenge for non-browser clients
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        type: text/plain
+        file: axonius-security.txt
+        note: >-
+          Retrieved via a rendering fetch (curl gets the 429 challenge page); content verified
+          byte-exact by PGP signature check against the Encryption: key it publishes. Fields:
+          Contact mailto:security@axonius.com, Expires 2027-12-31, Policy
+          https://www.axonius.com/vdp, Canonical, Encryption, Preferred-Languages, Hiring.
+      - path: /.well-known/openid-configuration
+        status: 429
+        note: Vercel JavaScript challenge page (HTML), not a document
+      - path: /.well-known/oauth-authorization-server
+        status: 429
+        note: Vercel JavaScript challenge page (HTML), not a document
+      - path: /.well-known/oauth-protected-resource
+        status: 429
+        note: Vercel JavaScript challenge page (HTML), not a document
+      - path: /.well-known/api-catalog
+        status: 429
+        note: Vercel JavaScript challenge page (HTML), not a document
+      - path: /.well-known/ai-plugin.json
+        status: 429
+        note: Vercel JavaScript challenge page (HTML), not a document
+      - path: /.well-known/ucp.json
+        status: 429
+      - path: /.well-known/acp.json
+        status: 429
+      - path: /.well-known/aauth-resource.json
+        status: 429
+      - path: /.well-known/apis.json
+        status: 429
+      - path: /apis.json
+        status: 429
+      - path: /apis.yml
+        status: 429
+      - path: /.well-known/agent-card.json
+        status: 429
+      - path: /.well-known/agent.json
+        status: 429
+      - path: /llms.txt
+        status: 429
+    path_echo_control: not-applicable (every path, control included, returns the 429 challenge)
+  - host: https://axonius.com
+    edge: Vercel Security Checkpoint — identical 429 challenge on every path
+    documents:
+      - path: /.well-known/security.txt
+        status: 429
+      - path: /.well-known/openid-configuration
+        status: 429
+      - path: /.well-known/oauth-authorization-server
+        status: 429
+      - path: /.well-known/oauth-protected-resource
+        status: 429
+      - path: /.well-known/api-catalog
+        status: 429
+      - path: /.well-known/ai-plugin.json
+        status: 429
+      - path: /.well-known/ucp.json
+        status: 429
+      - path: /.well-known/acp.json
+        status: 429
+      - path: /.well-known/aauth-resource.json
+        status: 429
+      - path: /.well-known/apis.json
+        status: 429
+      - path: /apis.json
+        status: 429
+      - path: /apis.yml
+        status: 429
+      - path: /.well-known/agent-card.json
+        status: 429
+      - path: /.well-known/agent.json
+        status: 429
+  - host: https://docs.axonius.com
+    platform: ReadMe
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/ucp.json
+        status: 404
+      - path: /.well-known/acp.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /llms.txt
+        status: 200
+        type: text/plain
+        file: ../llms/axonius-llms.txt
+        note: Real llms.txt index (already captured in llms/); not a /.well-known/ document
+    path_echo_control: passed (negative-control path returned 404)
+  - host: https://developer.axonius.com
+    platform: ReadMe (project axonius-group), login-gated
+    documents:
+      - path: /.well-known/security.txt
+        status: 302
+        note: Redirects to https://dash.readme.com/to/axonius-group login — not a document
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 302
+        note: Redirects to the ReadMe login
+      - path: /.well-known/ucp.json
+        status: 302
+      - path: /.well-known/acp.json
+        status: 302
+      - path: /.well-known/aauth-resource.json
+        status: 302
+      - path: /.well-known/apis.json
+        status: 302
+      - path: /apis.json
+        status: 302
+      - path: /apis.yml
+        status: 302
+      - path: /.well-known/agent-card.json
+        status: 302
+      - path: /.well-known/agent.json
+        status: 302
+    path_echo_control: failed (negative-control path also 302s to the login; every 302 above is the login redirect, none is a document)
+  - host: https://support.axonius.com
+    platform: Zendesk, Cloudflare challenge
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+        note: Cloudflare "Just a moment" challenge, then /hc/restricted login — not a document
+      - path: /.well-known/openid-configuration
+        status: 403
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+      - path: /.well-known/oauth-protected-resource
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403
+      - path: /.well-known/ai-plugin.json
+        status: 403
+      - path: /.well-known/agent-card.json
+        status: 403
+      - path: /.well-known/agent.json
+        status: 403
+      - path: /apis.json
+        status: 403
+  - host: https://trust.axonius.com
+    platform: Cloudflare challenge
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+        note: Cloudflare "Just a moment" challenge — not a document
+      - path: /.well-known/openid-configuration
+        status: 403
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+      - path: /.well-known/oauth-protected-resource
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403
+      - path: /.well-known/ai-plugin.json
+        status: 403
+      - path: /.well-known/agent-card.json
+        status: 403
+      - path: /.well-known/agent.json
+        status: 403
+      - path: /apis.json
+        status: 403
+hit_count: 1
+agent_card: none found on any host (www 429 challenge; docs 404; developer 302 login; support/trust 403 challenge)

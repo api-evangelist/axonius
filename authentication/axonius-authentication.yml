@@ -1,0 +1,57 @@
+generated: '2026-09-18'
+method: searched
+source: https://docs.axonius.com/docs/manage-service-accounts
+docs: https://docs.axonius.com/docs/axonius-rest-api
+description: >-
+  Authentication profile for the Axonius REST API, read from the public docs (no OpenAPI is
+  published outside the login-gated developer.axonius.com reference). The API is reachable only
+  through a dedicated SERVICE ACCOUNT (Axonius v6.1.74 and later; regular user accounts worked
+  through v6.1.73) whose role grants API access and the permissions it needs. A service account
+  authenticates one of two ways: an API key + API secret pair sent as request headers (the
+  default, and the scheme the provider's own Postman collections and Python client use), or
+  OAuth 2.1 client credentials exchanged at the instance's /api/oauth2/token endpoint for a
+  one-hour bearer token. The instance host is customer-specific ({axonius-instance}).
+summary:
+  types:
+  - apiKey
+  - oauth2
+  service_account_required: true
+  key_secret_shown_once: true
+  rotation: API key can be rotated at any time; resetting OAuth credentials invalidates all existing access tokens for that service account
+schemes:
+- name: apiKeyAndSecret
+  type: apiKey
+  in: header
+  headers:
+  - api-key
+  - api-secret
+  description: >-
+    Default scheme. The system generates an API key and secret pair when the service account is
+    saved; both are included in each API request as the api-key and api-secret headers. The
+    secret is displayed once and cannot be recovered — reset the key to get a new secret.
+  evidence:
+  - https://docs.axonius.com/docs/manage-service-accounts
+  - https://github.com/Axonius/postman-minis (api-key / api-secret headers on every request)
+- name: oauth21ClientCredentials
+  type: oauth2
+  flows:
+    clientCredentials:
+      tokenUrl: https://{axonius-instance}/api/oauth2/token
+      scopes: {}
+  token_request:
+    method: POST
+    auth: HTTP Basic — base64(client_id:client_secret)
+    body: application/x-www-form-urlencoded, grant_type=client_credentials
+  token_lifetime: 1 hour
+  usage: Authorization Bearer <access_token> on each API request
+  reset_endpoint: POST /api/settings/service_accounts/<service_account_id>/reset_credentials
+  scopes_documented: false
+  description: >-
+    OAuth 2.1 option on a service account. Client ID and Client Secret are exchanged for a
+    short-lived access token (expires after one hour); permissions come from the service
+    account's role and data scope, not from OAuth scopes — no scope list is published.
+  evidence:
+  - https://docs.axonius.com/docs/manage-service-accounts#using-oauth-21-authentication
+notes:
+- Advanced API settings toggle enables the /users/destroy and /devices/destroy endpoints and cross-domain calls from the developer.axonius.com reference (https://docs.axonius.com/docs/managing-api-settings).
+- The deprecated axonius_api_client reads AX_URL, AX_KEY and AX_SECRET from the environment.

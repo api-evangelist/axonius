@@ -1,0 +1,69 @@
+generated: '2026-09-18'
+method: probed
+status: published
+source: https://www.axonius.com/blog/axonius-mcp-server-and-ai-agent-for-security-and-it
+description: >-
+  Axonius announced the Axonius MCP Server on 2026-07-21 (blog + GlobeNewswire press release):
+  it "translates natural language questions into Axonius Query Language (AQL) and returns live
+  answers" across six asset categories, runs from a service account, and "is available to
+  customers in early access". No public endpoint, install package, tool list or documentation
+  page has been published — docs.axonius.com carries no MCP page as of 2026-09-18 — so the
+  product server's deployment mode is recorded as unknown, not guessed. Separately, the ReadMe
+  docs host answers the MCP Streamable HTTP protocol at https://docs.axonius.com/mcp
+  (initialize -> serverInfo axonius-help-group 1.0.0, protocolVersion 2025-06-18) but tools/list
+  returns an EMPTY tool array, so that endpoint is reachable and useless: it is the docs
+  platform's MCP feature with nothing enabled, not the Axonius product server.
+deployment:
+  mode: remote
+  endpoint: https://docs.axonius.com/mcp
+  install: null
+  package: null
+  auth: none
+  verified: probed
+  note: >-
+    The only MCP endpoint that answered anonymously. It is the ReadMe docs-platform MCP for the
+    Axonius help project, exposes zero tools (tools/list -> []), and is NOT the Axonius MCP Server
+    the provider announced; that one is customer-only early access with no published endpoint.
+product_server:
+  name: Axonius MCP Server
+  announced: '2026-07-21'
+  availability: early access, customers only
+  auth: service account (per the announcement; the REST API likewise requires a service account)
+  endpoint: unknown — not published
+  install: unknown — not published
+  capabilities_claimed:
+  - Compute (devices, services, databases, containers)
+  - Exposures (security findings)
+  - Identities (users, groups, roles, permissions)
+  - Networks (devices, load balancers, firewall rules)
+  - Apps (software, SaaS applications)
+  - Storage (object storage, file systems, disks)
+  evidence:
+  - url: https://www.axonius.com/blog/axonius-mcp-server-and-ai-agent-for-security-and-it
+    status: 200
+    note: fetched through a rendering fetch; the edge returns a 429 Vercel challenge to plain clients
+  - url: https://www.globenewswire.com/news-release/2026/07/21/3330527/0/en/axonius-launches-ai-agent-and-mcp-server-to-seamlessly-connect-asset-intelligence-to-enterprise-ai.html
+    status: 200
+docs_mcp_probe:
+  endpoint: https://docs.axonius.com/mcp
+  probed: '2026-09-18'
+  initialize:
+    status: 200
+    content_type: text/event-stream
+    protocolVersion: '2025-06-18'
+    serverInfo: {name: axonius-help-group, version: 1.0.0}
+    capabilities: {tools: {listChanged: false}}
+  tools_list:
+    status: 200
+    tools: []
+  well_known:
+  - path: https://docs.axonius.com/.well-known/oauth-protected-resource
+    status: 404
+  - path: https://docs.axonius.com/.well-known/oauth-authorization-server
+    status: 404
+  other_hosts_probed:
+  - url: https://mcp.axonius.com/
+    status: 0
+    note: host does not resolve
+tools: []
+tool_count: 0

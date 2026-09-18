@@ -1,0 +1,47 @@
+generated: '2026-09-18'
+method: searched
+source: https://docs.axonius.com/docs/send-to-webhook
+name: Axonius webhook surface
+summary: >-
+  Axonius runs webhooks in BOTH directions but publishes no AsyncAPI document and no event
+  catalog. Outbound: the "HTTP Server - Send to Webhook" (and "...per Asset") Enforcement Action
+  serializes the assets matched by a saved query as JSON and POSTs them to a customer-configured
+  URL, on a schedule or trigger; the payload is the asset entities, not a typed event. Inbound:
+  "Generic Webhook Events" give each Workflow a dedicated Axonius URL that external systems POST
+  to with an X-API-Key header, triggering the workflow. Neither side documents a payload schema,
+  signatures, or replay protection, and there is no subscription API — both are configured in the
+  product UI (or the login-gated API v2).
+asyncapi_document: null
+direction: both
+outbound_webhooks:
+  present: true
+  mechanism: Enforcement Action "HTTP Server - Send to Webhook" / "HTTP Server - Send to Webhook per Asset"
+  docs:
+  - https://docs.axonius.com/docs/send-to-webhook
+  - https://docs.axonius.com/docs/send-to-webhook-per-asset
+  method: POST
+  payload: >-
+    JSON; default body {"entities": {$BODY}} where {$BODY} is the array of matched assets with the
+    fields of the triggering saved query; customizable body template with {$BODY} / {$BODY_ESCAPED}
+  auth: optional HTTP authorization header user name + password (basic); none by default
+  timeouts: connection 10 s default; write 1200 s default
+  trigger: saved query on an Enforcement Set schedule, or assets selected in the asset table
+  event_catalog: none — the payload is asset data, not named event types
+  signature_verification: none documented
+  retry: not documented
+  payload_schema_published: false
+inbound_webhooks:
+- id: generic-webhook-event
+  name: Generic Webhook Events (Workflows trigger)
+  method: POST
+  url: unique per-event Axonius webhook URL generated in the product
+  producer: any external system (SIEM, HR/identity, SaaS)
+  consumer: Axonius Workflows
+  auth: X-API-Key header matched against the key configured on the event
+  responses: 200 OK or 204 No Content on success; 400 Bad Request after a failed retry
+  payload_schema_published: false
+  payload_note: accepts arbitrary JSON, nested objects and arrays; fields are mapped in the Workflow
+  evidence: https://docs.axonius.com/docs/generic-webhook-events
+  references:
+  - https://docs.axonius.com/docs/creating-a-generic-webhook-event
+  - https://docs.axonius.com/docs/managing-generic-webhook-events

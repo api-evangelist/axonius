@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "36279ee7-3cb4-48f7-91e6-eaca3c11e531",
+		"name": "Devices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28757573"
+	},
+	"item": [
+		{
+			"name": "Export CSV",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "{\"meta\":null,\"data\":{\"type\":\"entity_request_schema\",\"attributes\":{\"fields\":{\"devices\":[{{ax_fields}}]},\"excluded_adapters\":[],\"filter\":\"{{ax_filter}}\",\"delimiter\":\"\\\\n\",\"max_rows\":1048500,\"should_split_by_adapter\":{{ax_assest_entity_split}}}}}",
+							"description": "send this form data, if you dont wish to split by any field",
+							"type": "text"
+						},
+						{
+							"key": "data",
+							"value": "{\"meta\":null,\"data\":{\"type\":\"entity_request_schema\",\"attributes\":{\"fields\":{\"devices\":[{{ax_fields}}]},\"excluded_adapters\":[],\"filter\":\"{{ax_filter}}\",\"delimiter\":\"\\\\n\",\"max_rows\":1048500,\"field_to_split_by\":\"{{ax_field_to_split_by}}\",\"should_split_by_adapter\":{{ax_assest_entity_split}}}}}",
+							"description": "send this form data with the variable \"ax_field_to_split_by\" to split by specfic fields",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/devices/csv",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"devices",
+						"csv"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Notes To Device",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function validateURL(link)",
+							"{",
+							"    if (link.indexOf(\"https://\") != 0) {",
+							"        console.error(\"The baseUrl variable doesnt has https.\");",
+							"        throw new Error(\"Ensure your baseUrl variable is utlizing https and not http\")",
+							"    }",
+							"}",
+							"let url = pm.environment.get(\"baseUrl\");",
+							"validateURL(url);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"type\": \"notes_schema\",\n        \"attributes\": {\n            \"note\": \"this is a notesss3\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/devices/{{ax_device_id}}/notes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"devices",
+						"{{ax_device_id}}",
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Devices",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"description": "(Required) ",
+						"key": "api-key",
+						"value": "{{api-key}}"
+					},
+					{
+						"description": "(Required) ",
+						"key": "api-secret",
+						"value": "{{api-secret}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"meta\": null,\n    \"data\": {\n        \"type\": \"entity_request_schema\",\n        \"attributes\": {\n            \"page\": {\n                \"offset\": 0,\n                \"limit\": 350\n            },\n            \"use_cache_entry\": false,\n            \"always_cached_query\": false,\n            \"fields\": {\n                \"devices\": [\n                    \"adapters\",\n                    \"specific_data.data.name\",\n                    \"specific_data.data.hostname\",\n                    \"specific_data.data.last_seen\",\n                    \"specific_data.data.network_interfaces.mac\",\n                    \"specific_data.data.network_interfaces.ips\",\n                    \"specific_data.data.os.type\",\n                    \"labels\"\n                ]\n            },\n            \"filter\": \"((\\\"specific_data.data.hostname\\\" == ({\\\"$exists\\\":true,\\\"$ne\\\":\\\"\\\"})))\",\n            \"get_metadata\": false,\n            \"include_details\": false,\n            \"complex_fields_preview_limit\": 10,\n            \"max_field_items\": 50\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/devices",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"devices"
+					]
+				},
+				"description": "Use this API to fetch devices according to the defined query"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.headers.add({key: 'api-key', value: pm.environment.get('api-key')});",
+					"pm.request.headers.add({key: 'api-secret', value: pm.environment.get('api-secret')});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ax_device_id",
+			"value": "3475f92f6a04262a2a8ac03513928fad",
+			"type": "string"
+		},
+		{
+			"key": "ax_assest_entity_split",
+			"value": "false",
+			"type": "string"
+		},
+		{
+			"key": "ax_field_to_split_by",
+			"value": "specific_data.data.network_interfaces.ips",
+			"type": "string"
+		},
+		{
+			"key": "ax_filter",
+			"value": "((\\\"adapters_data.fortigate_adapter.id\\\" == ({\\\"$exists\\\":true,\\\"$ne\\\":\\\"\\\"})))",
+			"type": "string"
+		},
+		{
+			"key": "ax_fields",
+			"value": "\"adapters\", \"specific_data.data.name\", \"specific_data.data.hostname\", \"specific_data.data.last_seen\", \"specific_data.data.network_interfaces.mac\", \"specific_data.data.network_interfaces.ips\", \"specific_data.data.os.type\",\"labels\"",
+			"type": "string"
+		}
+	]
+}
