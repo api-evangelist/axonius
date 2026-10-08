@@ -69,6 +69,8 @@ apis:
     - type: Authentication
       url: authentication/axonius-authentication.yml
 common:
+  - type: FinOps
+    url: finops/axonius-finops.yml
   - type: TrustCenter
     url: security/axonius-trust-center.yml
   - type: DomainSecurity
