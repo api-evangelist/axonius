@@ -1,0 +1,21 @@
+generated: '2026-10-13'
+method: searched
+checked:
+- https://aws.amazon.com/marketplace/
+marketplace_apps: []
+edges:
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=d214f915-9fd1-4a86-ba7b-df638e34986d
+  listing_count: 1
+  apps:
+  - Axonius Asset Cloud
+  seller_name: Axonius Inc.
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
