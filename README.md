@@ -64,42 +64,136 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Axonius is a cybersecurity asset management platform providing SaaS management, device discovery, and security policy enforcement across IT environments.
+Axonius is a cybersecurity asset management platform (Axonius Asset Cloud) that aggregates device, user, cloud, SaaS and vulnerability data from 800+ adapters into one correlated inventory, enforces security policies through automated enforcement actions and workflows, and exposes that inventory over a service-account REST API (API v2), an Axonius Query Language, a deprecated Python client and CLI, outbound webhooks, and an early-access MCP server.
 
-## APIs
+**Areas:** Asset Management · Cybersecurity · SaaS Management · SaaS Security · Vulnerability Management · IT Asset Management · Security Operations
 
-### Axonius API
-Cybersecurity asset management platform API for device discovery, SaaS management, and policy enforcement.
-- **Documentation**: https://docs.axonius.com/
+## Axonius on APIs.io
 
-## Features
+Everything profiled for Axonius is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/axonius/](https://apis.io/providers/axonius/)** — or go straight to one of the APIs or properties below.
 
-- **Asset Discovery** — Automatically discover all devices, users, and cloud assets.
-- **SaaS Management** — Manage SaaS application access, licenses, and security posture.
-- **Security Enforcement** — Enforce security policies and trigger automated remediation.
-- **Integration Hub** — Connect to 800+ security and IT tools for data aggregation.
-- **Vulnerability Management** — Correlate vulnerability data with asset context for prioritized remediation.
-- **Compliance Reporting** — Generate reports for CIS Benchmarks, NIST, PCI DSS, and other frameworks.
-- **Query Builder** — Build complex queries to find assets matching specific security criteria.
-- **Lifecycle Management** — Track asset lifecycle from procurement to decommission.
+### APIs (1)
 
-## Use Cases
+- [Axonius](https://apis.io/apis/axonius/axonius/) — Axonius is a cybersecurity asset management platform providing SaaS management, device discovery, and security policy enforcement across IT environments.
 
-- **Asset Inventory** — Maintain a complete, always-accurate inventory of all IT and OT assets.
-- **Shadow IT Discovery** — Identify unauthorized devices and SaaS applications.
-- **Zero Trust Security** — Enforce zero trust policies by continuously validating asset compliance.
-- **Incident Response** — Quickly identify affected assets during security incidents.
-- **Compliance Auditing** — Prove compliance with security frameworks using comprehensive asset data.
+### Published properties
 
-## Links
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Website**: https://www.axonius.com
-- **Documentation**: https://docs.axonius.com/
-- **Getting Started**: https://docs.axonius.com/docs/getting-started
-- **Pricing**: https://www.axonius.com/pricing
-- **Blog**: https://www.axonius.com/blog
-- **GitHub**: https://github.com/Axonius
+#### AsyncAPI (1)
 
-## Maintainers
+Event-driven and webhook contracts.
 
-- **Kin Lane** — kin@apievangelist.com
+- [Axonius Webhooks](https://apis.io/asyncapis/axonius/axonius-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [axonius-mcp.yml](https://apis.io/servers/axonius/axonius-mcp-yml/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [activity logs](https://apis.io/collections/axonius/postman-axonius-activity-logs/)
+- [custom data crud operations](https://apis.io/collections/axonius/postman-axonius-custom-data/)
+- [dashboards, charts, queries - import/export](https://apis.io/collections/axonius/postman-axonius-dashboards-import-export/)
+- [Devices](https://apis.io/collections/axonius/postman-axonius-devices/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Axonius Authentication](https://apis.io/security/axonius/axonius-authentication/)
+- [Axonius Domain Security](https://apis.io/security/axonius/axonius-domain-security/)
+- [Axonius Trust Center](https://apis.io/security/axonius/axonius-trust-center/)
+- [Axonius Vulnerability Disclosure](https://apis.io/security/axonius/axonius-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Axonius Plans Pricing](https://apis.io/plans/axonius/axonius-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Axonius Rate Limits](https://apis.io/rate-limits/axonius/axonius-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Axonius Finops](https://apis.io/finops/axonius/axonius-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.axonius.com)
+- [Documentation](https://docs.axonius.com/)
+- [Getting started](https://docs.axonius.com/docs/axonius-rest-api)
+- [API reference](https://developer.axonius.com/)
+- [Pricing](https://aws.amazon.com/marketplace/pp/prodview-bupmprfogelg4)
+- [Support](https://support.axonius.com/)
+- [Blog](https://www.axonius.com/blog)
+- [Terms of service](https://www.axonius.com/legal/terms-conditions)
+- [Privacy policy](https://www.axonius.com/privacy-policy)
+- [GitHub](https://github.com/Axonius)
+
+## API Evangelist rating
+
+**Kin Score 49.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 39.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 58.3 |
+| Access clarity | 57.9 |
+
+**Agent readiness 25.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 31.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/axonius/](https://apis.io/providers/axonius/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Axonius: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/axonius/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
