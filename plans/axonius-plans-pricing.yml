@@ -1,0 +1,121 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Axonius
+providerId: axonius
+created: '2026-05-04'
+modified: '2026-09-18'
+generated: '2026-09-18'
+method: searched
+source: https://aws.amazon.com/marketplace/pp/prodview-bupmprfogelg4
+tags:
+  - Asset Management
+  - Cybersecurity
+  - SaaS Management
+  - SaaS Security
+description: >-
+  Axonius publishes no pricing page — https://www.axonius.com/pricing returns 404 and the site
+  footer links no pricing — and sells through sales conversations and private offers. The only
+  provider-published list prices are the two public dimensions on its own AWS Marketplace listing
+  (seller: Axonius Inc.), recorded here verbatim. Pricing is per asset (or per SaaS user for the
+  SaaS Management module) on 12-month contracts; there is no free tier, no trial, no self-serve
+  signup, and the API is not priced separately — it is part of the platform subscription. This
+  file replaces a 2026-05-04 scaffold that carried invented free/professional/enterprise tiers.
+plan_count: 2
+pricing_page: null
+pricing_model: per-asset annual subscription, quote-based; public list prices only on AWS Marketplace
+free_tier: false
+trial: false
+self_serve: false
+plans:
+  - id: axonius-asset-cloud-500-assets
+    name: AXS_500_Complete — Axonius Asset Cloud, 500 assets
+    type: paid
+    description: 500 assets with unlimited queries, adapters, and enforcements. AWS Marketplace public dimension, 12-month contract.
+    price: '90625.00'
+    currency: USD
+    billing_period: 12 months
+    entries:
+      - label: Assets
+        name: assets
+        type: quota
+        metric: assets
+        limit: 500
+        timeFrame: year
+        geo: global
+        domains: []
+        unit: 1
+        price: '90625.00'
+        userMultiplied: false
+      - label: Queries, adapters, enforcements
+        name: platform_usage
+        type: quota
+        metric: queries
+        limit: -1
+        timeFrame: year
+        geo: global
+        domains: []
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Unlimited queries
+      - name: Unlimited adapters
+      - name: Unlimited enforcements
+      - name: REST API (service account)
+    overage: request a private offer for other asset counts
+  - id: axonius-saas-management-700-users
+    name: Axonius SM — 700 Users
+    type: paid
+    description: 700 unique SaaS users; unlimited SaaS applications and platform users. AWS Marketplace public dimension, 12-month contract.
+    price: '88000.00'
+    currency: USD
+    billing_period: 12 months
+    entries:
+      - label: Unique SaaS users
+        name: saas_users
+        type: quota
+        metric: users
+        limit: 700
+        timeFrame: year
+        geo: global
+        domains: []
+        unit: 1
+        price: '88000.00'
+        userMultiplied: false
+    elements:
+      - name: Unlimited SaaS applications
+      - name: Unlimited platform users
+    overage: request a private offer for other user counts
+notes:
+  - AWS Marketplace listing states "No refunds" and "Request a private offer to receive a custom quote".
+  - A second AWS Marketplace listing (prodview-mywago4k7tmlu) exists for Axonius; not captured here.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - free
+  units:
+  - request
+  - seat
+  plans:
+  - name: AXS_500_Complete — Axonius Asset Cloud, 500 assets
+    access: paid
+    model: free
+    model_how: derived
+    units:
+    - other
+    - request
+    periods:
+    - year
+  - name: Axonius SM — 700 Users
+    access: paid
+    model: free
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - year
